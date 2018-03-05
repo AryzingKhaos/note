@@ -1,0 +1,76 @@
+h5
+<div class="arrowLeft arrow moving">>></div>
+<div class="arrowRight arrow moving"><<</div>
+
+
+css
+/*动画箭头*/
+.homePage .arrow {
+    position:  absolute;
+    top: 87.5vw;
+    color: #fdb94a;
+    font-size: 5.5vw;
+    font-family: Times;
+    font-weight: 600;
+}
+
+.homePage .arrowLeft {
+    left: 13%;
+}
+
+.arrowLeft.moving {
+    animation: leftMoving 0.4s infinite alternate;
+    -moz-animation: leftMoving 0.4s infinite alternate;
+    -webkit-animation: leftMoving 0.4s infinite alternate;
+    -o-animation: leftMoving 0.4s infinite alternate;
+    -ms-animation : leftMoving 0.4s infinite alternate;
+}
+
+@keyframes leftMoving {
+    0% {left: 13vw}
+    100% {left: 15vw}
+}
+@-webkit-keyframes leftMoving {
+    0% {left: 13vw}
+    100% {left: 15vw}
+}
+@-moz-keyframes leftMoving {
+    0% {left: 13vw}
+    100% {left: 15vw}
+}
+
+@-o-keyframes leftMoving {
+    0% {left: 13vw}
+    100% {left: 15vw}
+}
+
+
+.homePage .arrowRight {
+    right: 13%;
+}
+
+.arrowRight.moving {
+    animation: rightMoving 0.4s infinite alternate;
+    -moz-animation: rightMoving 0.4s infinite alternate;
+    -webkit-animation: rightMoving 0.4s infinite alternate;
+    -o-animation: rightMoving 0.4s infinite alternate;
+    -ms-animation : rightMoving 0.4s infinite alternate;
+}
+
+@keyframes rightMoving {
+    0% {right: 13vw}
+    100% {right: 15vw}
+}
+@-webkit-keyframes rightMoving {
+    0% {right: 13vw}
+    100% {right: 15vw}
+}
+@-moz-keyframes rightMoving {
+    0% {right: 13vw}
+    100% {right: 15vw}
+}
+
+@-o-keyframes rightMoving {
+    0% {right: 13vw}
+    100% {right: 15vw}
+}

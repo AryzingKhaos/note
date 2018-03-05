@@ -1,0 +1,68 @@
+/****************【h5部分】************************/
+<!-- 跑马灯 -->
+<div class="showRecord">
+	<div class="show_area" id="show_area">
+		<p id="show_p1">恭喜<span>10xxxx389</span>抽到50积分</p><p id="show_p2"><span></span></p>
+	</div>
+</div>
+
+
+
+/***************【js部分】******************/
+//定义数组滚动条的元素DOM节点
+var showDiv;
+var showP1;
+var showP2;
+//定时任务滚动奖励显示，这里用回调一次性定时器代替重复定时器，防止回调堆积
+function timeTask() {
+	if (timeout) return;
+	showDiv = document.getElementById("show_area");
+	showP1 = document.getElementById("show_p1");
+	showP2 = document.getElementById("show_p2");
+	showP2.innerHTML = showP1.innerHTML;
+	if(showP1.offsetWidth <= showDiv.scrollLeft) {
+		showDiv.scrollLeft -= showP1.offsetWidth;
+	} else {
+		showDiv.scrollLeft++;
+	}
+
+	setTimeout(timeTask, 50);
+};
+
+/**跑马灯滚动内容*/
+function allRecord() {
+	if (arrAllRecord == null || arrAllRecord.length == 0) {
+		return;
+	} else {
+		var arrLength = arrAllRecord.length;
+		//数据优化
+		if(arrLength <= 8) {
+
+		} else {
+			arrLength = 8;
+		}
+		var strArr = [];
+		for (var i = 0; i < arrLength; i++) {
+			if(arrAllRecord[i].awardType == 10) {
+				strArr.push("恭喜<span>" + hidePartUid(arrAllRecord[i].uid, 2, 4, "xxxx") + "</span>抽到"
+					+arrAllRecord[i].awardName  + "一张&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp");
+			} else if(arrAllRecord[i].awardType == 0 || arrAllRecord[i].awardType == 2 || arrAllRecord[i].awardType == 3 || arrAllRecord[i].awardType == 8) {
+				strArr.push("恭喜<span>" + hidePartUid(arrAllRecord[i].uid, 2, 4, "xxxx") + "</span>抽到"
+					+arrAllRecord[i].awardName  + "一个&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp");
+			} else {
+				strArr.push("恭喜<span>" + hidePartUid(arrAllRecord[i].uid, 2, 4, "xxxx") + "</span>抽到"
+					+ arrAllRecord[i].awardNum + arrAllRecord[i].awardName + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp");
+			}
+		}
+		// 实物Arr
+		var objsArr = [];
+		var objsCount = $('#homePage ul li').length;
+		$.each($('#homePage ul li'),function(n,ele){objsArr.push($(ele).html())});
+		strArr.push("恭喜<span>"+getRandNum(10,15)+"xxxx"+getRandNum(100,999)+"</span>抽到"+objsArr[getRandNum(0,objsCount)]+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp");
+		strArr.push("恭喜<span>"+getRandNum(10,15)+"xxxx"+getRandNum(100,999)+"</span>抽到"+objsArr[getRandNum(0,objsCount)]+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp");
+		
+		strArr = shuffle(strArr);
+		$("#show_p1").html(strArr.join(''));
+	}
+
+}

@@ -1,0 +1,45 @@
+
+
+
+¡¾HTML¡¿
+<div class="myredbag-num"></div>
+
+¡¾css¡¿
+.myredbag-num .spenum{
+	display: block;
+	float: left;
+	margin-left: -.15rem;
+	width: .6rem;
+	height: .6rem;
+}
+.myredbag-num .spenum0{background-image: url(../images/num/0.png)}
+.myredbag-num .spenum1{background-image: url(../images/num/1.png)}
+.myredbag-num .spenum2{background-image: url(../images/num/2.png)}
+.myredbag-num .spenum3{background-image: url(../images/num/3.png)}
+.myredbag-num .spenum4{background-image: url(../images/num/4.png)}
+.myredbag-num .spenum5{background-image: url(../images/num/5.png)}
+.myredbag-num .spenum6{background-image: url(../images/num/6.png)}
+.myredbag-num .spenum7{background-image: url(../images/num/7.png)}
+.myredbag-num .spenum8{background-image: url(../images/num/8.png)}
+.myredbag-num .spenum9{background-image: url(../images/num/9.png)}
+
+
+¡¾javascript¡¿
+
+function specialNumType(number){
+	number = parseInt(number).toString();
+	var numberArr = number.split('');
+	var str = "";
+	for(var i = 0; i < numberArr.length; i++){
+		str += '<i class="spenum spenum'+ numberArr[i] +'"></i>';
+	}
+	return str;
+}
+
+ÀıÈç
+specialNumType(999)
+º¯Êı·µ»Ø
+<i class="spenum spenum9"></i><i class="spenum spenum9"></i><i class="spenum spenum9"></i>
+
+
+
