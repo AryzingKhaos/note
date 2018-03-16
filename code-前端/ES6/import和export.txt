@@ -1,0 +1,76 @@
+【export】
+// profile.js
+export var firstName = 'Michael';
+export var lastName = 'Jackson';
+export var year = 1958;
+
+export的写法，除了像上面这样，还有另外一种。
+
+// profile.js
+var firstName = 'Michael';
+var lastName = 'Jackson';
+var year = 1958;
+
+export {firstName, lastName, year};
+原文地址
+http://es6.ruanyifeng.com/#docs/module#export
+
+export命令除了输出变量，还可以输出函数或类（class）。
+
+export function multiply(x, y) {
+  return x * y;
+};
+
+
+
+通常情况下，export输出的变量就是本来的名字，但是可以使用as关键字重命名。
+
+function v1() { ... }
+function v2() { ... }
+
+export {
+  v1 as streamV1,
+  v2 as streamV2,
+  v2 as streamLatestVersion
+};
+
+另外，export语句输出的接口，与其对应的值是动态绑定关系，即通过该接口，可以取到模块内部实时的值。
+
+export var foo = 'bar';
+setTimeout(() => foo = 'baz', 500);
+
+【import】
+// main.js
+import {firstName, lastName, year} from './profile.js';
+
+function setName(element) {
+  element.textContent = firstName + ' ' + lastName;
+}
+上面代码的import命令，用于加载profile.js文件，并从中输入变量。import命令接受一对大括号，里面指定要从其他模块导入的变量名。大括号里面的变量名，必须与被导入模块（profile.js）对外接口的名称相同。
+
+如果想为输入的变量重新取一个名字，import命令要使用as关键字，将输入的变量重命名。
+
+import { lastName as surname } from './profile.js';
+
+
+
+import命令输入的变量都是只读的，因为它的本质是输入接口。也就是说，不允许在加载模块的脚本里面，改写接口。
+
+import {a} from './xxx.js'
+
+a = {}; // Syntax Error : 'a' is read-only;
+上面代码中，脚本加载了变量a，对其重新赋值就会报错，因为a是一个只读的接口。但是，如果a是一个对象，改写a的属性是允许的。
+
+import {a} from './xxx.js'
+
+a.foo = 'hello'; // 合法操作
+上面代码中，a的属性可以成功改写，并且其他模块也可以读到改写后的值。不过，这种写法很难查错，建议凡是输入的变量，都当作完全只读，轻易不要改变它的属性。
+
+【简单说作为对象属性可以改写，但是不建议。作为对象不可改写。】
+
+
+
+
+
+
+
